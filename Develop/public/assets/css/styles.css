@@ -5,7 +5,23 @@ body {
   padding: 0;
 }
 
-.save-note, .new-note, .clear-btn {
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.note-form input,
+.note-form textarea {
+  margin-bottom: 10px;
+}
+
+.save-note,
+.new-note,
+.clear-btn {
   display: none;
 }
 
