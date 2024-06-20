@@ -46,6 +46,15 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   });
 
+const updateNote = (note) =>
+  fetch(`/api/notes/${note.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(note),
+  });
+
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: "DELETE",
@@ -78,15 +87,23 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value,
   };
-  saveNote(newNote).then(() => {
-    getAndRenderNotes();
-    renderActiveNote();
-  });
+
+  if (activeNote.id) {
+    newNote.id = activeNote.id;
+    updateNote(newNote).then(() => {
+      getAndRenderNotes();
+      renderActiveNote();
+    });
+  } else {
+    saveNote(newNote).then(() => {
+      getAndRenderNotes();
+      renderActiveNote();
+    });
+  }
 };
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
-  // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
   const note = e.target;
@@ -109,7 +126,7 @@ const handleNoteView = (e) => {
   renderActiveNote();
 };
 
-// Sets the activeNote to and empty object and allows the user to enter a new note
+// Sets the activeNote to an empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
   activeNote = {};
   show(clearBtn);
@@ -137,7 +154,6 @@ const renderNoteList = async (notes) => {
 
   let noteListItems = [];
 
-  // Returns HTML element with or without a delete button
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement("li");
     liEl.classList.add("list-group-item");
@@ -150,6 +166,16 @@ const renderNoteList = async (notes) => {
     liEl.append(spanEl);
 
     if (delBtn) {
+      const editBtnEl = document.createElement("i");
+      editBtnEl.classList.add(
+        "fas",
+        "fa-pencil-alt",
+        "float-right",
+        "text-warning",
+        "edit-note"
+      );
+      editBtnEl.addEventListener("click", handleNoteEdit);
+
       const delBtnEl = document.createElement("i");
       delBtnEl.classList.add(
         "fas",
@@ -160,7 +186,7 @@ const renderNoteList = async (notes) => {
       );
       delBtnEl.addEventListener("click", handleNoteDelete);
 
-      liEl.append(delBtnEl);
+      liEl.append(editBtnEl, delBtnEl);
     }
 
     return liEl;
@@ -188,8 +214,18 @@ const getAndRenderNotes = () => getNotes().then(renderNoteList);
 if (window.location.pathname === "/notes.html") {
   saveNoteBtn.addEventListener("click", handleNoteSave);
   newNoteBtn.addEventListener("click", handleNewNoteView);
-  clearBtn.addEventListener("click", renderActiveNote);
-  noteForm.addEventListener("input", handleRenderBtns);
+  noteTitle.addEventListener("keyup", handleRenderBtns);
+  noteText.addEventListener("keyup", handleRenderBtns);
 }
+// Handle the edit note button click
+const handleNoteEdit = (e) => {
+  e.stopPropagation();
+  const note = JSON.parse(e.target.parentElement.getAttribute("data-note"));
+  activeNote = note;
+  noteTitle.value = note.title;
+  noteText.value = note.text;
+  show(saveNoteBtn);
+  show(clearBtn);
+};
 
 getAndRenderNotes();

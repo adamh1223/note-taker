@@ -1,6 +1,7 @@
 const path = require("path");
 const router = require("express").Router();
 const fs = require("fs");
+const { v4: uuidv4 } = require("uuid");
 
 // API route to get all notes
 router.get("/notes", (req, res) => {
@@ -37,6 +38,25 @@ router.delete("/notes/:id", (req, res) => {
     fs.writeFile(
       path.join(__dirname, "../db/db.json"),
       JSON.stringify(filteredNotes, null, 2),
+      (err) => {
+        if (err) throw err;
+        res.json({ success: true });
+      }
+    );
+  });
+});
+
+// API route to update a note
+router.put("/notes/:id", (req, res) => {
+  fs.readFile(path.join(__dirname, "../db/db.json"), "utf8", (err, data) => {
+    if (err) throw err;
+    let notes = JSON.parse(data);
+    notes = notes.map((note) =>
+      note.id === req.params.id ? { ...note, ...req.body } : note
+    );
+    fs.writeFile(
+      path.join(__dirname, "../db/db.json"),
+      JSON.stringify(notes, null, 2),
       (err) => {
         if (err) throw err;
         res.json({ success: true });
