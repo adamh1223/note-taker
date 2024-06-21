@@ -119,6 +119,19 @@ const handleNoteDelete = (e) => {
   });
 };
 
+// Handle the edit note button click
+const handleNoteEdit = (e) => {
+  e.stopPropagation();
+  const note = JSON.parse(e.target.parentElement.getAttribute("data-note"));
+  activeNote = note;
+  noteTitle.value = note.title;
+  noteText.value = note.text;
+  noteTitle.removeAttribute("readonly");
+  noteText.removeAttribute("readonly");
+  show(saveNoteBtn);
+  show(clearBtn);
+};
+
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
@@ -148,7 +161,7 @@ const handleRenderBtns = () => {
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
-  if (window.location.pathname === "/notes.html") {
+  if (window.location.pathname === "/notes") {
     noteList.innerHTML = "";
   }
 
@@ -217,15 +230,5 @@ if (window.location.pathname === "/notes.html") {
   noteTitle.addEventListener("keyup", handleRenderBtns);
   noteText.addEventListener("keyup", handleRenderBtns);
 }
-// Handle the edit note button click
-const handleNoteEdit = (e) => {
-  e.stopPropagation();
-  const note = JSON.parse(e.target.parentElement.getAttribute("data-note"));
-  activeNote = note;
-  noteTitle.value = note.title;
-  noteText.value = note.text;
-  show(saveNoteBtn);
-  show(clearBtn);
-};
 
 getAndRenderNotes();

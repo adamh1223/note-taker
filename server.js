@@ -8,6 +8,10 @@ const htmlRoutes = require("./routes/htmlRoutes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", apiRoutes);

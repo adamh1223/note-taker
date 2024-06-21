@@ -92,3 +92,17 @@ body {
   padding: 20px;
   cursor: pointer;
 }
+
+/* In styles.css */
+.list-group-item .fa-pencil-alt {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.list-group-item .fa-trash-alt {
+  cursor: pointer;
+}
+
+.list-item-title {
+  cursor: pointer;
+}
