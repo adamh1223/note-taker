@@ -1,10 +1,8 @@
 # Readme Generator
 
-![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
-
 ## Description
 
-Welcome to Readme Generator! This CLI application automates readme file generation to expedite the process of creating readme files for developers. It's easy to use and prompts you a series of questions. When you're done answering the last question, a readme will be auto generated. It's as easy as that!
+Welcome to Note Taker! This application will simplify and keep track of your notes. Create todo lists, grocery lists, movies to watch, or any other kind of note in a few easy steps. You'll also be able to delete notes with just one click.
 
 ## Table of Contents
 
@@ -12,9 +10,7 @@ Welcome to Readme Generator! This CLI application automates readme file generati
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [Tests](#tests)
 - [Questions](#questions)
-- [License](#license-apache-2.0)
 - [User Story](#user-story)
 - [Acceptance Criteria](#acceptance-criteria)
 - [Technologies Used](#technologies-used)
@@ -22,23 +18,15 @@ Welcome to Readme Generator! This CLI application automates readme file generati
 
 ## Installation
 
-Ensure that you've downloade the inquirer dependency using the command "npm i inquirer@8.2.4". To launch the application, simply type in node index into the terminal, and you'll be prompted with the first question.
+Ensure that you've download the necessary dependencies by giving the command npm i. This project utilizes Dotenv, express, and uuid. Add a gitignore file, and add node_modules to it.
 
 ## Usage
 
-To use the application, You simply type in node index, answer the questions, and when you're finished with the last question, the readme file will be generated.
+To use the application, You simply type in node server, and the server will run on http://localhost:3001. Enter this address into the search bar on your browser and you'll be on the application. Click "Get Started" and you'll be navigated to the notes page. Here, you can add a note by clicking into "Note Title" and giving the note a title, and then "Note Text" where you'll write the note text. When you're done with the note, click "save note" and the note will populate on your notes list on the left side of the page. If you select "clear note, the note you're working on will be cleared. If you click the red trash icon next to any note on the notes list, it will be deleted. Enjoy using the application!
 
 ## Contributing
 
 For future contibutors of this application, feel free to ask questions, request new features, improve documentation, use visual aids, or add new innovative technology to reduce the size of the application.
-
-## Tests
-
-While there were no tests required on this project, feel free to create tests on this code. Some things to test could be making sure we are getting a license, and making sure that the data we are getting is what we think it is.
-
-## License
-
-This project is licensed under the Apache 2.0 license.
 
 ## Questions
 
@@ -77,11 +65,10 @@ Built with:
 - CSS
 - JavaScript
 - Node.js
+- Express
 
 ## Link to GitHub Repository
 
-https://github.com/adamh1223/readme-generator
+https://github.com/adamh1223/note-taker
 
-## Link to video demonstration
-
-https://vimeo.com/958588296
+## Link to deployed application
