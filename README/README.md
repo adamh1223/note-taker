@@ -2,7 +2,7 @@
 
 ## Description
 
-Welcome to Note Taker! This application will simplify and keep track of your notes. Create todo lists, grocery lists, movies to watch, or any other kind of note in a few easy steps. You'll also be able to delete notes with just one click.
+Welcome to Your Notes! This application will simplify and keep track of your notes. Create todo lists, grocery lists, movies to watch, or any other kind of note in a few easy steps. You'll also be able to delete notes with just one click.
 
 ## Table of Contents
 
