@@ -70,7 +70,7 @@ Built with:
 
 ## Link to GitHub Repository
 
-https://github.com/adamh1223/note-taker
+https://github.com/adamh1223/your-notes
 
 ## Link to deployed application
 
